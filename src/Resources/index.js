@@ -3,9 +3,4 @@ import Questions from "./Questions";
 import Answers from "./Answers";
 import Comments from "./Comments";
 
-export default {
-  Users,
-  Questions,
-  Answers,
-  Comments
-};
+export { Users, Questions, Answers, Comments };

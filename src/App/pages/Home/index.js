@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Container } from "./styles";
-import Card from "../../components/Card";
+import Questions from "./Questions";
 
 export default class HomePage extends Component {
   render() {
     return (
       <Container>
-        <Card />
+        <Questions />
       </Container>
     );
   }
