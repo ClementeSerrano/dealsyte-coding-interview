@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Text, Title, Subtitle, Content } from "./styles";
-import { Users } from "../../../Resources/index";
 
 export default class Card extends Component {
   render() {
@@ -13,7 +12,7 @@ export default class Card extends Component {
           </Subtitle>
         </Text>
         <Text>
-          <Content>{this.props.messaje}</Content>
+          <Content>{this.props.message}</Content>
         </Text>
       </Container>
     );
