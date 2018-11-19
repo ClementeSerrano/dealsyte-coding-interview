@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Container = styled.div`
   padding: 80px 0;
-  background-color: #0099ff;
 `;
 
 const QuestionsContainer = styled.div`
@@ -10,7 +9,6 @@ const QuestionsContainer = styled.div`
   flex-direction: column;
   padding: 10px;
   margin: 40px;
-  background-color: #0099ff;
 `;
 
 export { Container, QuestionsContainer };

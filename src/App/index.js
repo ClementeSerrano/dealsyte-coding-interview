@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import Routes from "./routes";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Pages from "./pages";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Routes />
-      </div>
-    );
-  }
-}
+//https://github.com/ignacioureta/interview
+//https://www.youtube.com/watch?v=UPv-3SYRdZk
+//https://www.youtube.com/watch?v=XRfD8xIOroA
+//https://www.youtube.com/watch?v=WzX0zNAgScA
 
-export default App;
+export default () => (
+  <Router>
+    <Pages />
+  </Router>
+);
