@@ -7,8 +7,10 @@ import Pages from "./pages";
 //https://www.youtube.com/watch?v=XRfD8xIOroA
 //https://www.youtube.com/watch?v=WzX0zNAgScA
 
-export default () => (
+const App = () => (
   <Router>
     <Pages />
   </Router>
 );
+
+export default App;

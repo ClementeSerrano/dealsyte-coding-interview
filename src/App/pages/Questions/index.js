@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { Container, QuestionsContainer } from "./styles";
-import Searcher from "../../components/Searcher";
-import { Card, Navlink } from "../../components";
+import { SearchById } from "../../components/Searcher";
+import { Card, Navlink, Loading } from "../../components";
 import { Questions } from "../../../Resources";
 
 export default class extends Component {
   state = {
-    questions: []
+    userLoggedIn: null
   };
 
   formatDate = date => {
@@ -15,41 +15,52 @@ export default class extends Component {
   };
 
   render() {
-    return (
-      <Container>
-        <QuestionsContainer>
-          {Questions.map(question => {
-            const author = Searcher(question.creatorId);
-            const date = this.formatDate(question.createdAt);
-            const lastEditionDate = this.formatDate(question.lastEditedAt);
+    const { userLoggedIn } = this.state;
 
-            return (
-              <Card
-                key={question.id}
-                author={author}
-                date={date}
-                lastEditionDate={lastEditionDate}
-                message={question.questionText}
-                button={
-                  <Navlink
-                    to={`/discussions/${question.id}/${author}/${
-                      question.createdAt
-                    }/${question.questionText}`}
-                    text="See discussion"
-                    color="#fff"
-                    backgroundcolor="#0099ff"
-                    hovercolor="#006bb3"
-                  />
-                }
-              />
-            );
-          })}
-        </QuestionsContainer>
-      </Container>
-    );
+    if (userLoggedIn === null) {
+      return <Loading />;
+    } else {
+      return (
+        <Container>
+          <QuestionsContainer>
+            {Questions.map(question => {
+              const author = SearchById(question.creatorId);
+              const date = this.formatDate(question.createdAt);
+              const lastEditionDate = this.formatDate(question.lastEditedAt);
+
+              return (
+                <Card
+                  key={question.id}
+                  author={author}
+                  date={date}
+                  lastEditionDate={lastEditionDate}
+                  message={question.questionText}
+                  button={
+                    <Navlink
+                      to={`/discussions/${question.id}/${author}/${
+                        question.createdAt
+                      }/${question.questionText}`}
+                      text="See discussion"
+                      color="#fff"
+                      backgroundcolor="#0099ff"
+                      hovercolor="#006bb3"
+                    />
+                  }
+                />
+              );
+            })}
+          </QuestionsContainer>
+        </Container>
+      );
+    }
   }
 
   componentDidMount() {
-    // Asuming that Questions will be imported from an API call...
+    console.log("did mount question");
+    this.setState({ userLoggedIn: this.props.userLoggedIn });
+  }
+
+  componentWillUnmount() {
+    console.log("unmounting questions");
   }
 }

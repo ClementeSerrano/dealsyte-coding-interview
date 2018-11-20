@@ -10,36 +10,51 @@ export default class extends Component {
     userLoggedIn: null
   };
 
-  handleUserSignIn = e => {
-    e.preventDefault();
-    alert("yeah!");
-    this.setState({ userLoggedIn: "pico" });
+  handleUserSignIn = userLoggedIn => {
+    alert("Welcome " + userLoggedIn + "!");
+    this.setState({ userLoggedIn: userLoggedIn });
   };
 
   render() {
-    if (this.state.userLoggedIn === null) {
-      return <SingIn onclick={this.handleUserSignIn} />;
-    } else {
-      return (
-        <div>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Questions} />
-            <Route
-              exact
-              path="/discussions/:id/:author/:date/:question"
-              render={({ match }) => (
-                <Discussions
-                  id={match.params.id}
-                  author={match.params.author}
-                  date={match.params.date}
-                  question={match.params.question}
-                />
-              )}
-            />
-          </Switch>
-        </div>
-      );
-    }
+    const { userLoggedIn } = this.state;
+
+    return (
+      <div>
+        <Navbar userLoggedIn={userLoggedIn} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <SingIn onclick={this.handleUserSignIn} user={userLoggedIn} />
+            )}
+          />
+          <Route
+            exact
+            path="/questions"
+            render={() => <Questions userLoggedIn={userLoggedIn} />}
+          />
+          <Route
+            exact
+            path="/discussions/:id/:author/:date/:question"
+            render={({ match }) => (
+              <Discussions
+                id={match.params.id}
+                author={match.params.author}
+                date={match.params.date}
+                question={match.params.question}
+              />
+            )}
+          />
+        </Switch>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    console.log("did mount sign in");
+  }
+  componentWillUnmount() {
+    console.log("will unmount sign in");
   }
 }

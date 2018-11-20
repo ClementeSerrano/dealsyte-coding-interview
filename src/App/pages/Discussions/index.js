@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { Container, Discussion } from "./styles";
 import { Card, Navlink } from "../../components";
-import Searcher from "../../components/Searcher";
+import { SearchById } from "../../components/Searcher";
 
 import { Answers, Comments } from "../../../Resources";
 
@@ -27,7 +27,7 @@ export default class extends Component {
             lastEditionDate={lastEditionDate}
             button={
               <Navlink
-                to="/"
+                to="/questions"
                 text="Back to questions"
                 color="#fff"
                 backgroundcolor="#0099ff"
@@ -39,7 +39,7 @@ export default class extends Component {
 
           {Comments.map(comment => {
             if (comment.questionId === parseInt(id)) {
-              const commentAuthor = Searcher(comment.creatorId);
+              const commentAuthor = SearchById(comment.creatorId);
               const commentDate = this.formatDate(comment.createdAt);
               const commentLastEditionDate = this.formatDate(
                 comment.lastEditedAt
@@ -61,7 +61,7 @@ export default class extends Component {
           <h3>Answers</h3>
           {Answers.map(answer => {
             if (answer.questionId === parseInt(id)) {
-              const answerAuthor = Searcher(answer.creatorId);
+              const answerAuthor = SearchById(answer.creatorId);
               const answerDate = this.formatDate(answer.createdAt);
               const answerLastEditionDate = this.formatDate(
                 answer.lastEditedAt

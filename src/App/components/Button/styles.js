@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const Container = styled.button`
   text-decoration: none;
@@ -15,7 +16,6 @@ const Container = styled.button`
   position: relative;
   overflow: hidden;
   background-color: ${props => props.backgroundcolor};
-  color: ${props => props.color};
   font-size: 15px;
   font-family: "Barlow", sans-serif;
   font-weight: 700;
@@ -64,4 +64,9 @@ const Container = styled.button`
   }
 `;
 
-export { Container };
+const Navlink = styled(NavLink)`
+  text-decoration: none;
+  color: ${props => props.color};
+`;
+
+export { Container, Navlink };

@@ -10,38 +10,18 @@ export default class extends Component {
 
   render() {
     if (this.state.users === null) {
-      return (
-        <Toolbar
-          links={[
-            {
-              name: "Questions",
-              href: "/",
-              key: "1"
-            },
-            {
-              name: "User",
-              href: "/",
-              key: "2"
-            }
-          ]}
-        />
-      );
+      return <div />;
     } else {
       return (
         <Toolbar
           links={[
             {
-              name: "Questions",
-              href: "/",
-              key: "1"
-            },
-            {
-              name: "Log out",
+              name: "Home",
               href: "/",
               key: "2"
             }
           ]}
-          users={this.state.users}
+          userLoggedIn={this.props.userLoggedIn}
         />
       );
     }

@@ -11,11 +11,18 @@ import { Users } from "../../../Resources";
 
 export default class extends Component {
   state = {
-    users: null
+    users: null,
+    userLoggedIn: ""
   };
 
-  handleSingIn = e => {
+  handleUserOnChange = e => {
     e.preventDefault();
+    this.setState({ userLoggedIn: e.target.value });
+  };
+
+  handleUserSignInClick = e => {
+    e.preventDefault();
+    this.props.onclick(this.state.userLoggedIn);
   };
 
   render() {
@@ -33,7 +40,11 @@ export default class extends Component {
           <Modal>
             <h1>Welcome!</h1>
             <p>Please select your user</p>
-            <Select>
+            <Select
+              value={this.state.userLoggedIn}
+              onChange={this.handleUserOnChange}
+            >
+              <option value={""}>Select a user</option>
               {users.map(user => (
                 <option key={Math.random()} value={user}>
                   {user}
@@ -43,7 +54,8 @@ export default class extends Component {
             <ButtonContainer>
               <Button
                 text="Sign in"
-                onclick={this.props.onclick}
+                onclick={this.handleUserSignInClick}
+                to="/questions"
                 color="#fff"
                 backgroundcolor="#0099ff"
                 hovercolor="#006bb3"
@@ -57,5 +69,9 @@ export default class extends Component {
 
   componentDidMount() {
     this.setState({ users: Users.map(user => user.name) });
+  }
+
+  componentWillUnmount() {
+    console.log("will unmount sign in");
   }
 }

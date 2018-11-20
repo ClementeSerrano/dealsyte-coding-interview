@@ -38,6 +38,11 @@ const Items = styled.div`
   }
 `;
 
+const Text = styled.p`
+  color: #fff;
+  font-weight: 600;
+`;
+
 const Spacer = styled.div`
   flex: 1;
 `;
@@ -49,4 +54,4 @@ const Button = styled.div`
   }
 `;
 
-export { Header, Nav, Items, Spacer, Button };
+export { Header, Nav, Items, Text, Spacer, Button };

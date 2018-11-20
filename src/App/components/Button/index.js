@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { Container } from "./styles";
+import { Container, Navlink } from "./styles";
 
 export default class Button extends Component {
   render() {
+    const { onclick, to, backgroundcolor, color, hovercolor } = this.props;
+
     return (
       <Container
-        onClick={this.props.onclick}
-        backgroundcolor={this.props.backgroundcolor}
-        color={this.props.color}
-        hovercolor={this.props.hovercolor}
+        onClick={onclick}
+        backgroundcolor={backgroundcolor}
+        hovercolor={hovercolor}
       >
-        {this.props.text}
+        <Navlink to={to} color={color}>
+          {this.props.text}
+        </Navlink>
       </Container>
     );
   }

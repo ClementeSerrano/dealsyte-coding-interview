@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Header, Nav, Items, Spacer } from "./styles";
+import { Header, Nav, Items, Text, Spacer } from "./styles";
 
 export default class extends Component {
   render() {
-    const { links, users } = this.props;
+    const { links, userLoggedIn } = this.props;
 
-    if (users === undefined) {
+    if (userLoggedIn === undefined) {
       return (
         <Header>
           <Nav>
@@ -26,13 +26,7 @@ export default class extends Component {
       return (
         <Header>
           <Nav>
-            <select>
-              {users.map(user => (
-                <option key={Math.random()} value={user}>
-                  {user}
-                </option>
-              ))}
-            </select>
+            <Text>{this.props.userLoggedIn}</Text>
             <Spacer />
             <Items>
               <ul>
