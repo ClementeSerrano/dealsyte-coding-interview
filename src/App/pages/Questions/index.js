@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { Container, QuestionsContainer } from "./styles";
-import { SearchById } from "../../components/Searcher";
-import { Card, Navlink, Loading } from "../../components";
+import { SearchByIdAndOrg, SearchByName } from "../../components/Searcher";
+import { Card, Navlink } from "../../components";
 import { Questions } from "../../../Resources";
 
 export default class extends Component {
@@ -18,16 +18,25 @@ export default class extends Component {
     const { userLoggedIn } = this.state;
 
     if (userLoggedIn === null) {
-      return <Loading />;
+      return (
+        <Container>
+          <QuestionsContainer>
+            <h1>Oops!</h1>
+            <p>
+              Seems like you are not logged in. Please click 'Home' and log in
+              :)
+            </p>
+          </QuestionsContainer>
+        </Container>
+      );
     } else {
       return (
         <Container>
           <QuestionsContainer>
             {Questions.map(question => {
-              const author = SearchById(question.creatorId);
+              const author = SearchByIdAndOrg(question.creatorId, userLoggedIn);
               const date = this.formatDate(question.createdAt);
               const lastEditionDate = this.formatDate(question.lastEditedAt);
-
               return (
                 <Card
                   key={question.id}
@@ -56,11 +65,6 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    console.log("did mount question");
-    this.setState({ userLoggedIn: this.props.userLoggedIn });
-  }
-
-  componentWillUnmount() {
-    console.log("unmounting questions");
+    this.setState({ userLoggedIn: SearchByName(this.props.userLoggedIn) });
   }
 }

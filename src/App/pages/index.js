@@ -50,11 +50,4 @@ export default class extends Component {
       </div>
     );
   }
-
-  componentDidMount() {
-    console.log("did mount sign in");
-  }
-  componentWillUnmount() {
-    console.log("will unmount sign in");
-  }
 }

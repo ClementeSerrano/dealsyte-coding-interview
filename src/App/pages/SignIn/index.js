@@ -70,8 +70,4 @@ export default class extends Component {
   componentDidMount() {
     this.setState({ users: Users.map(user => user.name) });
   }
-
-  componentWillUnmount() {
-    console.log("will unmount sign in");
-  }
 }

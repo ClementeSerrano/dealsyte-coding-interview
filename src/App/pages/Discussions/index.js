@@ -48,7 +48,7 @@ export default class extends Component {
               return (
                 <Card
                   key={comment.id}
-                  author={commentAuthor}
+                  author={commentAuthor.name}
                   date={commentDate}
                   message={comment.comment}
                   lastEditionDate={commentLastEditionDate}
@@ -70,7 +70,7 @@ export default class extends Component {
               return (
                 <Card
                   key={answer.id}
-                  author={answerAuthor}
+                  author={answerAuthor.name}
                   date={answerDate}
                   message={answer.answerText}
                   lastEditionDate={answerLastEditionDate}
